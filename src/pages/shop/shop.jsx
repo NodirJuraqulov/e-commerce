@@ -35,7 +35,9 @@ const Shop = () => {
 
       <Filter />
 
-      <Products data={data?.data?.products}/>
+      <div className="container mx-auto">
+        <Products data={data?.data?.products}/>
+      </div>
 
       <div>
         <Pagination
