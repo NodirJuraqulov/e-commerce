@@ -4,7 +4,8 @@ import { useRoutes } from "react-router-dom";
 const Layout = lazy(() => import("./layout/Layout"));
 const Home = lazy(() => import("./home/home"));
 const Shop = lazy(() => import("./shop/shop"));
-const About = lazy(() => import("./about/About"));
+const Wishlist = lazy(() => import("./wishlist/Wishlist"));
+const Cart = lazy(() => import("./cart/Cart"));
 const Contact = lazy(() => import("./contact/Contact"));
 const ProductDetail = lazy(() => import("./productDetail/ProductDetail"));
 
@@ -45,10 +46,10 @@ const MainRouters = () => {
               ),
             },
             {
-              path: "/about",
+              path: "/wishlist",
               element: (
                 <Suspense>
-                  <About />
+                  <Wishlist />
                 </Suspense>
               ),
             },
@@ -57,6 +58,14 @@ const MainRouters = () => {
               element: (
                 <Suspense>
                   <Contact />
+                </Suspense>
+              ),
+            },
+            {
+              path: "/cart",
+              element: (
+                <Suspense>
+                  <Cart />
                 </Suspense>
               ),
             },

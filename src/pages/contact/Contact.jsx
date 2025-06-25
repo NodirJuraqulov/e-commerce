@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from "react";
 
 const Contact = () => {
-  return (
-    <div>Contact</div>
-  )
-}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-export default React.memo(Contact)
+  return <div className="mt-25">Contact</div>;
+};
+
+export default React.memo(Contact);

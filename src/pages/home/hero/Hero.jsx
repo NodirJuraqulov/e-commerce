@@ -3,7 +3,7 @@ import heroImg from '@/assets/bghero.png'
 
 const Hero = () => {
   return (
-    <div className='w-full h-[712px] mt-25' style={{ backgroundImage: `url(${heroImg})` }}>
+    <div className='w-full h-[712px] mt-25 mb-10' style={{ backgroundImage: `url(${heroImg})` }}>
       <div className='container mx-auto h-full flex items-center justify-end'>
         <div className='bg-[#FFFFFFB2] py-[50px] px-10 rounded-[10px] w-[643px]'>
           <p className='text-[16px] font-semibold text-[#333333]' style={{ letterSpacing: "3px" }}>New Arrival</p>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "./hero/Hero";
 import Types from "./types/Types";
 import Products from "@/components/products/Products";
@@ -8,6 +8,11 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   const { getProduct } = useProduct();
   const { data } = getProduct({ limit: 8, skip: 0 });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Hero />
@@ -15,7 +20,7 @@ const Home = () => {
 
       <div className="container mx-auto flex flex-col items-center justify-center gap-8">
         <h2
-          className="text-[40px] font-bold text-[#3A3A3A]"
+          className="text-[40px] mt-8 font-bold text-[#3A3A3A]"
           style={{ lineHeight: "48px" }}
         >
           Our Products

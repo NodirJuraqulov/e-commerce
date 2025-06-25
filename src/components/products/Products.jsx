@@ -1,27 +1,32 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import ProductItem from "./ProductItem";
 
-const Products = ({ data }) => {
-  const navigate = useNavigate();
-
+const Skeleton = ({ count }) => {
   return (
     <div className="grid grid-cols-4 gap-8">
-      {data?.map((product) => (
-        <div key={product.id} className="cursor-pointer bg-[#F4F5F7] p-3">
-          <div className="bg-white">
-            <img
-              src={product.thumbnail}
-              alt={product.title}
-              onClick={() => navigate(`/product/${product.id}`)}
-            />
-          </div>
-          <div className="p-2">
-            <h3 className="text-[18px] font-semibold text-[#3A3A3A]">{product.title}</h3>
-            <p className="text-[16px] font-medium text-[#898989]">{product.category}</p>
-            <span className="text-[18px] font-semibold text-[#3A3A3A]">{product.price}$</span>
-          </div>
+      {Array(count).fill().map((_, index) => (
+        <div
+          key={index}
+          className="bg-gray-200 animate-pulse rounded-lg h-[300px] w-full"
+        >
+          <div className="bg-gray-100 h-[285px]"></div>
+          <div className="bg-gray-100 mt-2 h-6 w-10/12"></div>
+          <div className="bg-gray-100 mt-2 h-6 w-6/12"></div>
+          <div className="bg-gray-100 mt-2 h-6 w-1/3"></div>
         </div>
       ))}
+    </div>
+  );
+};
+
+const Products = ({ data, loading, count }) => {
+  return (
+    <div className="grid grid-cols-4 gap-8">
+      {loading ? (
+        <Skeleton count={count} />
+      ) : (
+        data?.map((product) => <ProductItem key={product.id} {...product} />)
+      )}
     </div>
   );
 };

@@ -1,18 +1,24 @@
-import React from 'react'
+import React from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import heroImg from "@/assets/shophero.png";
+import { NavLink } from "react-router-dom";
 
-const HeroShop = () => {
+const HeroShop = ({ text }) => {
   return (
-    <div style={{ backgroundImage: `url(${heroImg})` }} className='w-full h-[316px] bg-cover bg-center flex flex-col items-center justify-center'>
-      <h2 className='text-[48px] font-medium'>Shop</h2>
-      <div className='flex items-center gap-2'>
-        <p className='text-[16px] font-medium'>Home</p>
+    <div
+      style={{ backgroundImage: `url(${heroImg})` }}
+      className="w-full h-[316px] bg-cover bg-center flex flex-col items-center justify-center"
+    >
+      <h2 className="text-[48px] font-medium">{text}</h2>
+      <div className="flex items-center gap-2">
+        <NavLink to={"/"}>
+          <p className="text-[16px] font-medium">Home</p>
+        </NavLink>
         <MdOutlineNavigateNext />
-        <p className='text-[16px] font-light'>Shop</p>
+        <p className="text-[16px] font-light">{text}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(HeroShop)
+export default React.memo(HeroShop);

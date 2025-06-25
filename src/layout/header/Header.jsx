@@ -24,8 +24,11 @@ const Header = () => {
           <NavLink to={"/shop"}>
             <p className="text-[16px] font-medium hover:underline">Shop</p>
           </NavLink>
-          <NavLink to={"/about"}>
-            <p className="text-[16px] font-medium hover:underline">About</p>
+          <NavLink to={"/wishlist"}>
+            <p className="text-[16px] font-medium hover:underline">Wishlist</p>
+          </NavLink>
+          <NavLink to={"/cart"}>
+            <p className="text-[16px] font-medium hover:underline">Cart</p>
           </NavLink>
           <NavLink to={"/contact"}>
             <p className="text-[16px] font-medium hover:underline">Contact</p>
@@ -34,16 +37,22 @@ const Header = () => {
 
         <div className="flex items-center gap-[45px]">
           <button className="cursor-pointer">
-            <img src={Person} alt="Person" />
+            <NavLink to={"/contact"}>
+              <img src={Person} alt="Person" />
+            </NavLink>
           </button>
           <button className="cursor-pointer">
             <img src={Search} alt="Search" />
           </button>
           <button className="cursor-pointer">
-            <img src={Heart} alt="Heart" />
+            <NavLink to={"/wishlist"}>
+              <img src={Heart} alt="Heart" />
+            </NavLink>
           </button>
           <button className="cursor-pointer">
-            <img src={Cart} alt="Cart" />
+            <NavLink to={"/cart"}>
+              <img src={Cart} alt="Cart" />
+            </NavLink>
           </button>
         </div>
       </div>
