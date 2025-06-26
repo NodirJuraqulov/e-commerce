@@ -1,26 +1,76 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "@/assets/vite.svg";
 import Person from "@/assets/person.svg";
 import Search from "@/assets/search.svg";
 import Heart from "@/assets/heart.svg";
 import Cart from "@/assets/cart.svg";
+import { useSelector } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
 
 const linkStyle = "text-[16px] font-medium transition-colors duration-200";
 const activeClass = "text-[#B88E2F]";
 
 const Header = () => {
+  const wishlist = useSelector((state) => state.wishlist.value);
+  const cart = useSelector((state) => state.cart.value);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    const off = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+      if (
+        isOpen &&
+        boxRef.current &&
+        !boxRef.current.contains(e.target) &&
+        e.type !== "keydown"
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", off);
+    document.addEventListener("touchstart", off);
+    document.addEventListener("keydown", off);
+    return () => {
+      ["mousedown", "touchstart", "keydown"].forEach((ev) =>
+        document.removeEventListener(ev, off)
+      );
+    };
+  }, [isOpen]);
+
+  const [shrink, setShrink] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // 50 px dan oshganda kichraytiramiz
+      setShrink(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="h-[100px] bg-white shadow-md fixed inset-x-0 top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between h-full">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-white shadow-md
+                  transition-all duration-300 ease-in-out
+                  ${shrink ? "h-[60px]" : "h-[100px]"}`}
+    >
+      <div
+        className={`container mx-auto flex items-center justify-between h-full
+                    transition-all duration-300 ease-in-out
+                    ${shrink ? "py-2" : "py-4"}`}
+      >
         <NavLink to="/" className="flex items-center gap-1">
           <img src={Logo} alt="logo" className="w-10 h-10" />
           <h1 className="text-2xl font-bold">E-commerce</h1>
         </NavLink>
 
         <nav className="flex items-center gap-[75px]">
-          {["/", "/shop", "/wishlist", "/cart", "/contact"].map((path, i) => {
-            const text = ["Home", "Shop", "Wishlist", "Cart", "Contact"][i];
+          {["/", "/shop", "/contact"].map((path, i) => {
+            const text = ["Home", "Shop", "Contact"][i];
             return (
               <NavLink
                 key={path}
@@ -36,11 +86,44 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-[45px]">
-          <button className="p-1 rounded-full hover:bg-gray-100">
-            <img src={Search} alt="Search" />
-          </button>
+          <div ref={boxRef} className="relative">
+            {!isOpen && (
+              <button
+                onClick={() => setIsOpen(true)}
+                className="p-1 rounded-full cursor-pointer"
+              >
+                <img src={Search} alt="Search" />
+              </button>
+            )}
 
-          <NavLink to="/contact" className="p-1 rounded-full hover:bg-gray-100">
+            <AnimatePresence>
+              {isOpen && (
+                <motion.input
+                  key="search-input"
+                  type="text"
+                  autoFocus
+                  placeholder="Search…"
+                  initial={{ width: 0, opacity: 0, x: 0 }}
+                  animate={{ width: 230, opacity: 1, x: -10 }}
+                  exit={{ width: 0, opacity: 0, x: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                  className="pl-10 pr-3 py-1 rounded-md
+                             focus:outline-none focus:ring-1 focus:ring-[#B88E2F]
+                             bg-white shadow-md origin-right"
+                />
+              )}
+            </AnimatePresence>
+
+            {isOpen && (
+              <img
+                src={Search}
+                alt=""
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-60 pointer-events-none"
+              />
+            )}
+          </div>
+
+          <NavLink to="/contact" className="p-1 rounded-full">
             {({ isActive }) => (
               <img
                 src={Person}
@@ -50,28 +133,45 @@ const Header = () => {
             )}
           </NavLink>
 
-          <NavLink
-            to="/wishlist"
-            className="p-1 rounded-full hover:bg-gray-100"
-          >
-            {({ isActive }) => (
-              <img
-                src={Heart}
-                alt="Heart"
-                className={isActive ? "grayscale-0" : "grayscale"}
-              />
-            )}
-          </NavLink>
+          <div className="relative">
+            <NavLink to="/wishlist" className="p-1 rounded-full">
+              {({ isActive }) => (
+                <img
+                  src={Heart}
+                  alt="Heart"
+                  className={isActive ? "grayscale-0" : "grayscale"}
+                />
+              )}
+            </NavLink>
 
-          <NavLink to="/cart" className="p-1 rounded-full hover:bg-gray-100">
-            {({ isActive }) => (
-              <img
-                src={Cart}
-                alt="Cart"
-                className={isActive ? "grayscale-0" : "grayscale"}
-              />
+            {wishlist.length ? (
+              <div className="absolute w-5 h-5 text-sm font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
+                {wishlist.length}
+              </div>
+            ) : (
+              <div></div>
             )}
-          </NavLink>
+          </div>
+
+          <div className="relative">
+            <NavLink to="/cart" className="p-1 rounded-full">
+              {({ isActive }) => (
+                <img
+                  src={Cart}
+                  alt="Cart"
+                  className={isActive ? "grayscale-0" : "grayscale"}
+                />
+              )}
+            </NavLink>
+
+            {cart.length ? (
+              <div className="absolute w-5 h-5 text-sm font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
+                {cart.length}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
       </div>
     </header>

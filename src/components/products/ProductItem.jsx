@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWishlist } from "@/redux/features/wishlist";
-import { BsFillCartPlusFill, BsCartCheckFill } from "react-icons/bs";
+import { BsCartPlus, BsCartCheckFill } from "react-icons/bs";
 import { addToCart } from "@/redux/features/cart";
 
 const ProductItem = (product) => {
@@ -27,7 +27,7 @@ const ProductItem = (product) => {
         />
         <button
           onClick={() => dispatch(toggleWishlist(product))}
-          className="absolute top-3 right-3 cursor-pointer p-2 px-3 bg-[#F4F5F7] rounded-full"
+          className="absolute top-3 right-3 cursor-pointer p-1 px-2 bg-[#F4F5F7] rounded-full"
         >
           {wishlist.some((item) => item.id === product.id) ? (
             <HeartFilled />
@@ -38,12 +38,12 @@ const ProductItem = (product) => {
 
         <button
           onClick={() => dispatch(addToCart(product))}
-          className="absolute top-15 right-3 cursor-pointer p-3 bg-[#F4F5F7] rounded-full"
+          className="absolute top-13 right-3 cursor-pointer p-2 bg-[#F4F5F7] rounded-full"
         >
           {cart.some((item) => item.id === product.id) ? (
             <BsCartCheckFill />
           ) : (
-            <BsFillCartPlusFill />
+            <BsCartPlus />
           )}
         </button>
       </div>

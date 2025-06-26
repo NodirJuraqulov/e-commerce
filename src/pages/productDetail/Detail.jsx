@@ -28,10 +28,8 @@ const Detail = ({ product }) => {
 
   const handlePlus = () => {
     if (qty === 0) {
-      // cartda yo'q – avval qo'shamiz
-      dispatch(addToCart(product)); // quantity = 1
+      dispatch(addToCart(product));
     } else {
-      // allaqachon bor – shunchaki oshiramiz
       dispatch(incrementCart(product));
     }
   };
