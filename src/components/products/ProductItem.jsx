@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWishlist } from "@/redux/features/wishlist";
-import { BsFillCartPlusFill } from "react-icons/bs";
+import { BsFillCartPlusFill, BsCartCheckFill } from "react-icons/bs";
 import { addToCart } from "@/redux/features/cart";
 
 const ProductItem = (product) => {
@@ -11,11 +11,12 @@ const ProductItem = (product) => {
   const { thumbnail, title, category, price } = product;
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.value);
+  const cart = useSelector((state) => state.cart.value);
 
   return (
     <div
       key={product.id}
-      className="cursor-pointer bg-[#F4F5F7] p-3 group rounded-md hover:shadow-lg transition-shadow duration-300"
+      className="cursor-pointer bg-[#F4F5F7] shadow group rounded-md hover:shadow-lg transition-shadow duration-200"
     >
       <div className="bg-white overflow-hidden rounded-md relative">
         <img
@@ -35,8 +36,15 @@ const ProductItem = (product) => {
           )}
         </button>
 
-        <button onClick={() => dispatch(addToCart(product))} className="absolute top-15 right-3 cursor-pointer p-3 bg-[#F4F5F7] rounded-full">
-          <BsFillCartPlusFill />
+        <button
+          onClick={() => dispatch(addToCart(product))}
+          className="absolute top-15 right-3 cursor-pointer p-3 bg-[#F4F5F7] rounded-full"
+        >
+          {cart.some((item) => item.id === product.id) ? (
+            <BsCartCheckFill />
+          ) : (
+            <BsFillCartPlusFill />
+          )}
         </button>
       </div>
       <div className="p-2">
