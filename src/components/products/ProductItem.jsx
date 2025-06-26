@@ -50,7 +50,7 @@ const ProductItem = (product) => {
       <div className="p-2">
         <h3 className="text-[18px] font-semibold text-[#3A3A3A]">{title}</h3>
         <p className="text-[16px] font-medium text-[#898989]">{category}</p>
-        <span className="text-[18px] font-semibold text-[#3A3A3A]">
+        <span className="text-[22px] font-semibold text-[#3A3A3A]">
           {price}$
         </span>
       </div>

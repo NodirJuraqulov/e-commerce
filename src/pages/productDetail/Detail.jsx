@@ -4,6 +4,9 @@ import Facebook from "@/assets/facebook.svg";
 import Linkedin from "@/assets/linkedin.svg";
 import Twitter from "@/assets/twitter.svg";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleWishlist } from "@/redux/features/wishlist";
+import { addToCart } from "@/redux/features/cart";
+import { incrementCart, decrementCart } from "@/redux/features/cart";
 
 const Detail = ({ product }) => {
   const { title, price, rating, description, sku, category, tags, images } =
@@ -12,12 +15,26 @@ const Detail = ({ product }) => {
   const sizes = ["L", "XL", "XS"];
   const [next, setNext] = useState(0);
 
+  const wishlist = useSelector((state) => state.wishlist.value);
   const cart = useSelector((state) => state.cart.value);
   const dispatch = useDispatch();
+
+  const cartItem = cart.find((i) => i.id === product.id);
+  const qty = cartItem?.quantity ?? 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handlePlus = () => {
+    if (qty === 0) {
+      // cartda yo'q – avval qo'shamiz
+      dispatch(addToCart(product)); // quantity = 1
+    } else {
+      // allaqachon bor – shunchaki oshiramiz
+      dispatch(incrementCart(product));
+    }
+  };
 
   return (
     <div className="w-full container mx-auto pt-[35px] pb-[55px] flex justify-between">
@@ -94,13 +111,14 @@ const Detail = ({ product }) => {
           <div className="w-[160px] h-[64px] shadow-md flex items-center justify-between px-2 py-5 rounded-[15px]">
             <button
               onClick={() => dispatch(decrementCart(product))}
+              disabled={qty <= 1}
               className="text-[20px] cursor-pointer shadow-lg px-[14px] py-1 active:shadow"
             >
               -
             </button>
-            <span className="text-[20px] px-2">1</span>
+            <span className="text-[20px] px-2">{qty}</span>
             <button
-              onClick={() => dispatch(incrementCart(product))}
+              onClick={handlePlus}
               className="text-[20px] cursor-pointer shadow-lg px-3 py-1 active:shadow"
             >
               +
@@ -108,13 +126,19 @@ const Detail = ({ product }) => {
           </div>
 
           <button
-            onClick={() => dispatch(addToCart(product))}
-            className="w-[215px] h-[64px] shadow-md py-4 px-12 rounded-[15px] text-[20px] cursor-pointer active:shadow"
+            onClick={() => dispatch(toggleWishlist(product))}
+            className="w-[215px] h-[64px] shadow-md py-4 px-10 rounded-[15px] text-[18px] cursor-pointer active:shadow"
           >
-            Add To Cart
+            {wishlist.some((w) => w.id === product.id)
+              ? "In Wishlist"
+              : "Add To Wishlist"}
           </button>
-          <button className="w-[215px] h-[64px] shadow-md py-4 px-12 rounded-[15px] text-[20px] cursor-pointer active:shadow">
-            + Compare
+
+          <button
+            onClick={() => dispatch(addToCart(product))}
+            className="w-[215px] h-[64px] shadow-md py-4 px-12 rounded-[15px] text-[18px] cursor-pointer active:shadow"
+          >
+            {qty ? "Added" : "Add To Cart"}
           </button>
         </div>
 
