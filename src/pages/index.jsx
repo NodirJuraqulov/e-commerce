@@ -8,6 +8,8 @@ const Wishlist = lazy(() => import("./wishlist/Wishlist"));
 const Cart = lazy(() => import("./cart/Cart"));
 const Contact = lazy(() => import("./contact/Contact"));
 const ProductDetail = lazy(() => import("./productDetail/ProductDetail"));
+const NotFound = lazy(() => import("./notFound/NotFound"));
+const Checkout = lazy(() => import("./checkout/Checkout"));
 
 const MainRouters = () => {
   return (
@@ -69,7 +71,24 @@ const MainRouters = () => {
                 </Suspense>
               ),
             },
+            {
+              path: "/checkout",
+              element: (
+                <Suspense>
+                  <Checkout />
+                </Suspense>
+              ),
+            },
           ],
+        },
+
+        {
+          path: "*",
+          element: (
+            <Suspense>
+              <NotFound />
+            </Suspense>
+          ),
         },
       ])}
     </>

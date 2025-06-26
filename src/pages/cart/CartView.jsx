@@ -6,12 +6,14 @@ import {
   decrementCart,
   removeCart,
 } from "@/redux/features/cart";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Empty from "@/assets/empty.png";
+import { use } from "react";
 
 const CartView = ({ data }) => {
   const cart = useSelector((state) => state.cart.value);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="flex justify-between py-15 container mx-auto">
@@ -106,7 +108,7 @@ const CartView = ({ data }) => {
             </strong>
           </div>
 
-          <button className="rounded-[15px] py-3 px-14 border-1 border-black mt-10 cursor-pointer">
+          <button onClick={() => navigate("/checkout")} className="rounded-[15px] py-3 px-14 border-1 border-black bg-white mt-10 cursor-pointer">
             Check Out
           </button>
         </div>
