@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t-1 border-[#D9D9D9] mt-10">
       <div className="py-10 container mx-auto min-h-[420px]">
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-0">
           <div>
             <h4 className="text-[24px] font-bold">Furniro.</h4>
             <p className="text-[16px] font-normal text-[#9F9F9F] mt-[50px]">
@@ -14,7 +14,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex items-start gap-[108px]">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-10 md:gap-[108px]">
             <div>
               <h4 className="text-[16px] font-medium text-[#9F9F9F] mb-[55px]">
                 Links
@@ -89,7 +89,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-[35px] border-t-1 border-[#D9D9D9]">
+        <div
+          className="mt-12 pt-9
+                 border-t border-[#D9D9D9]
+                 text-center md:text-left"
+        >
           <p className="text-[16px] font-normal">
             2023 furino. All rights reverved
           </p>

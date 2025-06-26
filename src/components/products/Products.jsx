@@ -3,7 +3,7 @@ import ProductItem from "./ProductItem";
 
 const Skeleton = ({ count }) => {
   return (
-    <div className="grid grid-cols-4 gap-8">
+    <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array(count).fill().map((_, index) => (
         <div
           key={index}
@@ -21,7 +21,7 @@ const Skeleton = ({ count }) => {
 
 const Products = ({ data, loading, count }) => {
   return (
-    <div className="grid grid-cols-4 gap-8">
+    <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {loading ? (
         <Skeleton count={count} />
       ) : (

@@ -35,9 +35,9 @@ const Detail = ({ product }) => {
   };
 
   return (
-    <div className="w-full container mx-auto pt-[35px] pb-[55px] flex justify-between">
-      <div className="w-[550px]">
-        <div className="flex gap-4 mt-5">
+    <div className="w-full container mx-auto pt-[35px] pb-[55px] flex px-4 flex-col lg:flex-row justify-between">
+      <div className="max-w-[550px]">
+        <div className="flex flex-col lg:flex-row gap-4 mt-5 ">
           <div className="flex flex-col gap-5 overflow-x-auto">
             {images?.map((image, index) => (
               <img

@@ -23,9 +23,9 @@ const ProductDesc = () => {
         </p>
       </div>
 
-      <div className="w-full flex items-center justify-center gap-[30px] mt-9">
-        <img className="bg-[#F9F1E7] rounded-md" src={Sofa1} alt="Sofa 1" />
-        <img className="bg-[#F9F1E7] rounded-md" src={Sofa2} alt="Sofa 2" />
+      <div className="w-full flex flex-col xl:flex-row items-center px-4 justify-center gap-6 sm:gap-[30px] mt-9">
+        <img className="bg-[#F9F1E7] object-contain w-full rounded-md" src={Sofa1} alt="Sofa 1" />
+        <img className="bg-[#F9F1E7] object-contain w-full rounded-md" src={Sofa2} alt="Sofa 2" />
       </div>
     </div>
   );

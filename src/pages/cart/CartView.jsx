@@ -16,20 +16,20 @@ const CartView = ({ data }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-between py-15 container mx-auto">
-      <div className="mr-[30px] w-[70%]">
-        <div className="px-[140px] bg-[#F9F1E7] h-[55px] flex items-center rounded-md mb-[55px]">
-          <h4 className="mr-[114px] pl-2 font-normal">Product</h4>
-          <h4 className="mr-[80px] font-normal">Price</h4>
-          <h4 className="mr-[76px] font-normal">Quantity</h4>
-          <h4 className="font-normal">Subtotal</h4>
+    <div className="container mx-auto flex flex-col lg:flex-row items-start gap-8 py-15">
+      <div className="w-full lg:w-[70%]">
+        <div className="bg-[#F9F1E7] h-[55px] flex items-center rounded-md mb-[55px] px-6 sm:px-10 md:px-[80px] lg:px-[140px]">
+          <h4 className="flex-1 font-normal">Product</h4>
+          <h4 className="w-24 text-center font-normal">Price</h4>
+          <h4 className="w-28 text-center font-normal">Quantity</h4>
+          <h4 className="w-24 text-center font-normal">Subtotal</h4>
         </div>
 
         {cart.length ? (
-          cart?.map((product) => (
+          cart.map((product) => (
             <div
               key={product.id}
-              className="grid grid-cols-6 mb-5 items-center pb-5 border-b-1 border-[#E0E0E0]"
+              className="grid grid-cols-2 sm:grid-cols-6 items-center gap-4 pb-5 mb-5 border-b border-[#E0E0E0]"
             >
               <img
                 src={product.thumbnail}
@@ -37,25 +37,25 @@ const CartView = ({ data }) => {
                 className="w-20 h-20 bg-[#F9F1E7] rounded-[10px] object-contain"
               />
 
-              <p className="truncate font-medium" title={product.title}>
+              <p className="truncate font-medium sm:col-span-1">
                 {product.title}
               </p>
 
-              <strong className="ml-6">{product.price} $</strong>
+              <strong className="sm:col-auto ml-0 sm:ml-6">
+                {product.price} $
+              </strong>
 
               <div className="flex items-center gap-2">
                 <button
-                  className="disabled:opacity-40 px-2 rounded-md cursor-pointer border-1 border-black"
+                  className="disabled:opacity-40 px-2 rounded-md border border-black"
                   disabled={product.quantity <= 1}
                   onClick={() => dispatch(decrementCart(product))}
                 >
                   -
                 </button>
-
                 <span className="w-6 text-center">{product.quantity}</span>
-
                 <button
-                  className="px-[6px] border-1 border-black cursor-pointer rounded-md"
+                  className="px-2 border border-black rounded-md"
                   onClick={() => dispatch(incrementCart(product))}
                 >
                   +
@@ -67,7 +67,7 @@ const CartView = ({ data }) => {
               </strong>
 
               <button
-                className="text-red-500 hover:text-red-600 cursor-pointer"
+                className="text-red-500 hover:text-red-600 justify-self-end"
                 onClick={() => dispatch(removeCart(product))}
               >
                 <MdOutlineDeleteOutline className="text-2xl" />
@@ -75,27 +75,24 @@ const CartView = ({ data }) => {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center">
             <img className="w-30 mt-5" src={Empty} alt="empty" />
             <h3 className="text-xl font-semibold my-5 text-gray-500">
               Your cart is empty
             </h3>
-            <NavLink to={"/shop"}>
-              <button
-                className="border-1 border-[#B88E2F] text-[#B88E2F] font-semibold text-[16px] py-3 px-[78px] cursor-pointer"
-                style={{ lineHeight: "24px" }}
-              >
+            <NavLink to="/shop">
+              <button className="border border-[#B88E2F] text-[#B88E2F] font-semibold text-[16px] py-3 px-10">
                 Add To Cart
               </button>
             </NavLink>
           </div>
         )}
       </div>
-      {cart.length ? (
-        <div className="w-[30%] bg-[#F9F1E7] h-[100%] flex flex-col rounded-md items-center justify-center py-5">
-          <h2 className="text-[32px] font-semibold mb-10">Cart Totals</h2>
 
-          <div className="flex gap-15 items-center">
+      {cart.length ? (
+        <div className="w-full lg:w-[30%] bg-[#F9F1E7] rounded-md flex flex-col items-center py-8">
+          <h2 className="text-[32px] font-semibold mb-10">Cart Totals</h2>
+          <div className="flex gap-8 items-center">
             <p className="text-[16px] font-medium">Total</p>
             <strong className="text-[20px] font-medium text-[#B88E2F]">
               {Math.round(
@@ -107,14 +104,14 @@ const CartView = ({ data }) => {
               $
             </strong>
           </div>
-
-          <button onClick={() => navigate("/checkout")} className="rounded-[15px] py-3 px-14 border-1 border-black bg-white mt-10 cursor-pointer">
+          <button
+            onClick={() => navigate("/checkout")}
+            className="rounded-[15px] py-3 px-14 border border-black bg-white mt-10"
+          >
             Check Out
           </button>
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
 };

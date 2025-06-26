@@ -6,7 +6,12 @@ import Img3 from "@/assets/filterimg3.svg";
 const Filter = () => {
   return (
     <div className="h-[100px] bg-[#F9F1E7] w-full mb-[46px]">
-      <div className="container mx-auto h-full flex items-center justify-between">
+      <div
+        className="container mx-auto h-full
+           flex flex-col gap-5 md:flex-row
+           items-center
+           justify-center md:justify-between"
+      >
         <div className="flex items-center gap-6">
           <img src={Img1} alt="Filter" />
           <h4 className="text-[20px] font-normal">Filter</h4>
@@ -40,10 +45,18 @@ const Filter = () => {
                 name="category"
                 id="category"
               >
-                <option className="text-[#9F9F9F]" value="default">Default</option>
-                <option className="text-[#9F9F9F]" value="electronics">Electronics</option>
-                <option className="text-[#9F9F9F]" value="clothing">Clothing</option>
-                <option className="text-[#9F9F9F]" value="accessories">Accessories</option>
+                <option className="text-[#9F9F9F]" value="default">
+                  Default
+                </option>
+                <option className="text-[#9F9F9F]" value="electronics">
+                  Electronics
+                </option>
+                <option className="text-[#9F9F9F]" value="clothing">
+                  Clothing
+                </option>
+                <option className="text-[#9F9F9F]" value="accessories">
+                  Accessories
+                </option>
               </select>
             </div>
           </form>

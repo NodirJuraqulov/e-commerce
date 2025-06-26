@@ -6,7 +6,7 @@ import Img4 from '@/assets/supportimg4.svg'
 
 const Support = () => {
   return (
-    <div className='w-full h-[270px] bg-[#FAF3EA] flex items-center justify-center gap-[55px] py-[100px] px-[53px]'>
+    <div className='w-full min-h-[270px] bg-[#FAF3EA] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 place-items-center gap-y-8 gap-x-[55px] py-[100px] px-[53px]'>
       <div className='flex items-center gap-2.5'>
         <div>
           <img src={Img1} alt="support" />

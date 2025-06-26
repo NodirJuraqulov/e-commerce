@@ -14,7 +14,7 @@ export const useProduct = () => {
     useQuery({
       queryKey: ["product", id],
       queryFn: () => api.get(`/products/${id}`).then((res) => res.data),
-      enabled: !!id, // ID bo‘sh bo‘lmasa ishlaydi
+      enabled: !!id,
     });
 
   const getProductByCategory = (category) =>
@@ -25,5 +25,12 @@ export const useProduct = () => {
       enabled: !!category,
     });
 
-  return { getProduct, getProductById, getProductByCategory };
+  const getSearchProduct = (params) =>
+    useQuery({
+      queryKey: ["product", params],
+      queryFn: () => api.get("/products/search", { params }),
+      enabled: !!params.q
+    });
+
+  return { getProduct, getProductById, getProductByCategory, getSearchProduct };
 };
