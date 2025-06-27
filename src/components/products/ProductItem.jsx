@@ -30,7 +30,7 @@ const ProductItem = (product) => {
           className="absolute top-3 right-3 cursor-pointer p-1 px-2 bg-[#F4F5F7] rounded-full"
         >
           {wishlist.some((item) => item.id === product.id) ? (
-            <HeartFilled />
+            <HeartFilled style={{ color: "#ff0000" }} />
           ) : (
             <HeartOutlined />
           )}

@@ -201,7 +201,7 @@ const Header = () => {
                 )}
               </NavLink>
               {wishlist.length > 0 && (
-                <div className="absolute w-5 h-5 text-sm font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
+                <div className="absolute w-5 h-5 text-sm text-white font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
                   {wishlist.length}
                 </div>
               )}
@@ -218,7 +218,7 @@ const Header = () => {
                 )}
               </NavLink>
               {cart.length > 0 && (
-                <div className="absolute w-5 h-5 text-sm font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
+                <div className="absolute text-white w-5 h-5 text-sm font-medium rounded-full bg-red-600 flex items-center justify-center top-4 right-[-9px]">
                   {cart.length}
                 </div>
               )}
