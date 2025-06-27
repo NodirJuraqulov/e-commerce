@@ -24,22 +24,26 @@ const Header = () => {
 
   useEffect(() => {
     const off = (e) => {
-      if (e.key === "Escape") setIsOpen(false);
-      if (
+      const escPressed = e.type === "keydown" && e.key === "Escape";
+
+      const clickedOutside =
         isOpen &&
         boxRef.current &&
         !boxRef.current.contains(e.target) &&
-        e.type !== "keydown"
-      ) {
+        e.type !== "keydown";
+
+      if (escPressed || clickedOutside) {
         setIsOpen(false);
+        setValue(""); 
       }
-    };
+    };      
+
     document.addEventListener("mousedown", off);
     document.addEventListener("touchstart", off);
     document.addEventListener("keydown", off);
     return () => {
-      ["mousedown", "touchstart", "keydown"].forEach((ev) =>
-        document.removeEventListener(ev, off)
+      ["mousedown", "touchstart", "keydown"].forEach((e) =>
+        document.removeEventListener(e, off)
       );
     };
   }, [isOpen]);
@@ -126,7 +130,7 @@ const Header = () => {
                     value={value}
                     onChange={handleChange}
                     initial={{ width: 0, opacity: 0, x: 0 }}
-                    animate={{ width: 230, opacity: 1, x: -10 }}
+                    animate={{ width: 330, opacity: 1, x: -10 }}
                     exit={{ width: 0, opacity: 0, x: 0 }}
                     transition={{ type: "spring", stiffness: 260, damping: 30 }}
                     className="pl-10 pr-3 py-1 rounded-md bg-white shadow-md
@@ -143,6 +147,37 @@ const Header = () => {
                   className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-60 pointer-events-none"
                 />
               )}
+
+              <div>
+                {data?.data?.products?.length ? (
+                  <div className="flex flex-col w-full` gap-4 w-[330px] bg-white p-4 shadow absolute top-9 left-[-10px] z-50 h-[400px] overflow-scroll">
+                    {data?.data?.products?.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center gap-4 py-2 border-b-1 border-gray-400"
+                      >
+                        <img
+                          src={item.thumbnail}
+                          width={60}
+                          alt="img"
+                          className="bg-gray-200 rounded-md"
+                        />
+
+                        <div>
+                          <h4>{item.title}</h4>
+                          <p className="font-semibold">{item.price} $</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : value ? (
+                  <p className="text-center text-gray-600 text-xl font-medium absolute top-9 left-[-10px] shadow bg-white p-2 w-full">
+                    Not found!
+                  </p>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
 
             <NavLink to="/contact" className="p-1 rounded-full">
@@ -224,26 +259,6 @@ const Header = () => {
           </div>
         </div>
       )}
-
-      <div className="mt-25">
-        {data?.data?.products?.length ? (
-          <div>
-            {data?.data?.products?.map((item) => (
-              <div key={item.id}>
-                <img src={item.thumbnail} width={60} alt="img" />
-                <h4>{item.title}</h4>
-                <p>
-                  {item.price}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : value ? (
-          <p>Not found</p>
-        ) : (
-          <></>
-        )}
-      </div>
     </>
   );
 };
