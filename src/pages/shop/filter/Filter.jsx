@@ -5,7 +5,7 @@ import Img3 from "@/assets/filterimg3.svg";
 
 const Filter = () => {
   return (
-    <div className="h-[100px] bg-[#F9F1E7] w-full mb-[46px]">
+    <div className="min-h-[100px] px-4 bg-[#F9F1E7] w-full mb-[46px]">
       <div
         className="container mx-auto h-full
            flex flex-col gap-5 md:flex-row

@@ -21,8 +21,8 @@ const ProductDetail = () => {
   if (isLoading) return <div>Loading...</div>;
 
   const relatedProducts = relatedData?.products
-    ?.filter((p) => p.id !== product.id) // asosiy productni chiqarib tashlaymiz
-    ?.slice(0, 4); // faqat 4 ta
+    ?.filter((p) => p.id !== product.id)
+    ?.slice(0, 4);
 
   return (
     <div className="w-full">

@@ -18,8 +18,8 @@ const CartView = ({ data }) => {
   return (
     <div className="container mx-auto flex flex-col lg:flex-row items-start gap-8 py-15">
       <div className="w-full lg:w-[70%]">
-        <div className="bg-[#F9F1E7] h-[55px] flex items-center rounded-md mb-[55px] px-6 sm:px-10 md:px-[80px] lg:px-[140px]">
-          <h4 className="flex-1 font-normal">Product</h4>
+        <div className="bg-[#F9F1E7] h-[55px] flex items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 cl:gap-20 rounded-md mb-[55px] px-6 sm:px-10 md:px-[80px] lg:px-[140px]">
+          <h4 className="font-normal">Product</h4>
           <h4 className="w-24 text-center font-normal">Price</h4>
           <h4 className="w-28 text-center font-normal">Quantity</h4>
           <h4 className="w-24 text-center font-normal">Subtotal</h4>
@@ -62,7 +62,7 @@ const CartView = ({ data }) => {
                 </button>
               </div>
 
-              <strong className="font-medium">
+              <strong className="font-medium ml-15">
                 {Math.round(product.price * product.quantity * 10) / 10} $
               </strong>
 

@@ -79,7 +79,7 @@ const Header = () => {
                       transition-all duration-300 ease-in-out
                       ${shrink ? "py-2" : "py-4"}`}
         >
-          <NavLink to="/" className="flex items-center gap-1">
+          <NavLink to="/" className="flex items-center gap-1 flex-row max-[450px]:flex-col">
             <img src={Logo} alt="logo" className="w-10 h-10" />
             <h1 className="text-2xl font-bold">E-commerce</h1>
           </NavLink>
@@ -101,7 +101,7 @@ const Header = () => {
             })}
           </nav>
 
-          <div className="flex items-center gap-[45px]">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-[45px]">
             <button
               onClick={() => setMenuOpen(true)}
               className="md:hidden p-2 rounded hover:bg-gray-100"

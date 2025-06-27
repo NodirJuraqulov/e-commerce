@@ -12,8 +12,8 @@ const Wishlist = () => {
   }, []);
 
   return (
-    <div className="pt-30 container mx-auto flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-semibold mb-5">Wishlist</h2>
+    <div className="pt-[120px] container mx-auto flex flex-col items-center justify-center">
+      <h2 className="text-2xl font-semibold mb-5 mt-[120px]">Wishlist</h2>
 
       {wishlist.length ? (
         <Products data={wishlist} />

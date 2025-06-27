@@ -11,6 +11,7 @@ import { incrementCart, decrementCart } from "@/redux/features/cart";
 const Detail = ({ product }) => {
   const { title, price, rating, description, sku, category, tags, images } =
     product || {};
+
   const [activeSize, setActiveSize] = useState("L");
   const sizes = ["L", "XL", "XS"];
   const [next, setNext] = useState(0);
@@ -35,10 +36,10 @@ const Detail = ({ product }) => {
   };
 
   return (
-    <div className="w-full container mx-auto pt-[35px] pb-[55px] flex px-4 flex-col lg:flex-row justify-between">
+    <div className="w-full container mx-auto pt-[35px] pb-[55px] flex px-4 flex-col xl:flex-row justify-between">
       <div className="max-w-[550px]">
-        <div className="flex flex-col lg:flex-row gap-4 mt-5 ">
-          <div className="flex flex-col gap-5 overflow-x-auto">
+        <div className="flex flex-col lg:flex-row gap-4 mt-5">
+          <div className="flex flex-col gap-5 overflow-x-auto max-[1000px]:flex-row">
             {images?.map((image, index) => (
               <img
                 key={index}
@@ -51,7 +52,7 @@ const Detail = ({ product }) => {
           </div>
 
           <img
-            className="w-[423px] h-[500px] object-contain bg-[#F9F1E7] rounded-[10px]"
+            className="max-w-[423px] h-[500px] object-contain bg-[#F9F1E7] rounded-[10px]"
             src={images[next]}
             alt=""
           />
@@ -125,7 +126,7 @@ const Detail = ({ product }) => {
 
           <button
             onClick={() => dispatch(toggleWishlist(product))}
-            className="w-[215px] h-[64px] shadow-md py-4 px-10 rounded-[15px] text-[18px] cursor-pointer active:shadow"
+            className="w-[215px] h-[64px] shadow-md py-4 px-10 rounded-[15px] truncate overflow-hidden text-[18px] cursor-pointer active:shadow"
           >
             {wishlist.some((w) => w.id === product.id)
               ? "In Wishlist"
@@ -134,7 +135,7 @@ const Detail = ({ product }) => {
 
           <button
             onClick={() => dispatch(addToCart(product))}
-            className="w-[215px] h-[64px] shadow-md py-4 px-12 rounded-[15px] text-[18px] cursor-pointer active:shadow"
+            className="w-[215px] h-[64px] shadow-md py-4 px-12 rounded-[15px] truncate overflow-hidden text-[18px] cursor-pointer active:shadow"
           >
             {qty ? "Added" : "Add To Cart"}
           </button>
