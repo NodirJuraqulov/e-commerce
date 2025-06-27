@@ -135,7 +135,7 @@ const Detail = ({ product }) => {
 
           <button
             onClick={() => dispatch(addToCart(product))}
-            className="w-[215px] h-[64px] shadow-md py-4 px-10 rounded-[15px] overflow-hidden text-[18px] cursor-pointer active:shadow"
+            className="w-[215px] h-[64px] shadow-md py-4 px-10 rounded-[15px] overflow-hidden text-[17px] cursor-pointer active:shadow"
           >
             {qty ? "Added" : "Add To Cart"}
           </button>
