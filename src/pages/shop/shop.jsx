@@ -26,6 +26,8 @@ const Shop = () => {
       params.set("page", page.toString());
     }
     setParams(params);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {

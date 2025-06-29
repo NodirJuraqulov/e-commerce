@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Img1 from "@/assets/filterimg1.svg";
 import Img2 from "@/assets/filterimg2.svg";
 import Img3 from "@/assets/filterimg3.svg";
 
 const Filter = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-[100px] px-4 bg-[#F9F1E7] w-full mb-[46px]">
       <div

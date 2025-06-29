@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import heroImg from "@/assets/shophero.png";
 import { NavLink } from "react-router-dom";
 
 const HeroShop = ({ text }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${heroImg})` }}
