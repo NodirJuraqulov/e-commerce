@@ -55,7 +55,7 @@ const Checkout = () => {
 
   return (
     <div className="pt-35 container mx-auto">
-      <div className="p-10 border-1 mt-[140px] border-[#E0E0E0] rounded-md  shadow-md w-1/2 mx-auto">
+      <div className="p-10 border-1 mt-[140px] border-[#E0E0E0] rounded-md  shadow-md w-11/12 sm:w-7/8 md:w-4/5 lg:w-1/2 mx-auto">
         <Form
           name="basic"
           onFinish={onFinish}
