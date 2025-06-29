@@ -61,7 +61,7 @@ const Checkout = () => {
           onFinish={onFinish}
           autoComplete="off"
           layout="inline"
-          className="w-full flex flex-col items-center justify-center gap-5"
+          className="w-full flex flex-col justify-center gap-5"
         >
           <Form.Item
             label="Name"
@@ -109,9 +109,9 @@ const Checkout = () => {
             />
           </Form.Item>
 
-          <Form.Item label={null}>
+          <Form.Item label={null} className="w-full flex justify-center">
             <button
-              className="border-1 border-[#B88E2F] mt-5 text-[#B88E2F] font-semibold text-[16px] py-3 px-[78px] cursor-pointer"
+              className="border-1 border-[#B88E2F] mt-5 text-[#B88E2F] font-semibold text-[16px] py-3 px-[14px] sm:px-[32px] md:px-[50px] lg:px-[78px] cursor-pointer"
               style={{ lineHeight: "24px" }}
               htmlType="submit"
             >
