@@ -85,8 +85,8 @@ const Header = () => {
           </NavLink>
 
           <nav className="hidden md:flex items-center gap-[75px]">
-            {["/", "/shop", "/contact"].map((path, i) => {
-              const text = ["Home", "Shop", "Contact"][i];
+            {["/", "/shop"].map((path, i) => {    // +"/contact"
+              const text = ["Home", "Shop"][i];   // +"Contact"
               return (
                 <NavLink
                   key={path}
